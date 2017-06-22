@@ -15,7 +15,7 @@ async def on_ready():
 
 @client.command(pass_context=True)
 async def hello(ctx):
-    msg = 'Hello ' + str(author.id)
+    msg = 'Hello World!'
     await client.say(msg)
 
 client.run('MzI3MzU0NDY0MjcxMDczMjgw.DC0IlA.ablfsh7yqBvg-k79TXYzG1EDdc0')
