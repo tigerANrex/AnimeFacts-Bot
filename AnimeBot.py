@@ -1,5 +1,6 @@
 import discord
 import asyncio
+from urllib.parse import urlencode
 
 from discord.ext import commands
 
