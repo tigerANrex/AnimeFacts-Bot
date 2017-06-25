@@ -67,7 +67,7 @@ async def addFact(name, *, fact):
 
 @client.command(aliases = ['remove'])
 async def removeFact(name, *, fact):
-    db.child("anime").remove({name: "{}".format(fact)})
+    db.child("anime").remove()
     return await client.say("I've removed {}".format(fact)})
 
 @client.command()
