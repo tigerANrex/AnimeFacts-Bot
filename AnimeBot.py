@@ -1,5 +1,6 @@
 import discord
 import asyncio
+import random
 from pyrebase import pyrebase
 from urllib.parse import urlencode
 
@@ -35,6 +36,23 @@ async def name(*args):
         print(args)
         url = ("https://myanimelist.net/character.php?{}".format(urlencode({'q':' '.join(args)})))
         return await client.say(url)
+
+@client.command(aliases = ['butts'])
+async def ass():
+    rand = int((random.random() * 4821) + 7)
+    url = "http://media.obutts.ru/butts_preview/{}".format(str(rand).zfill(5) + ".jpg")
+    return await client.say(url)
+
+@client.command()
+async def tit():
+    url = "https://www.youtube.com/watch?v=63IwUcBK_Rs"
+    return await client.say(url)
+
+@client.command(aliases = ['tits'])
+async def boobs():
+    rand = int((random.random() * 11765) + 1)
+    url = "http://media.oboobs.ru/boobs_preview/{}".format(str(rand).zfill(5) + ".jpg")
+    return await client.say(url)
 
 @client.command()
 async def allFacts():
