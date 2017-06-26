@@ -6,6 +6,8 @@ from urllib.parse import urlencode
 
 from discord.ext import commands
 
+import channels
+
 config = {
 "apiKey": "AIzaSyCq_q5ny1h_hAv_JHglS7b2PQFpS7UewWQ",
 "authDomain": "animefacts-bot.firebaseapp.com",
@@ -18,13 +20,24 @@ db = firebase.database()
 #client = discord.Client()
 client = commands.Bot(description = "AnimeFacts Bot", command_prefix = "!")
 
+
 @client.event
 async def on_ready():
     print('Logged in as')
     print(client.user.name)
     print(client.user.id)
     print('------------------')
+
     await client.change_presence(game=discord.Game(name='Prefix: !'))
+
+
+# user type "!online" and bot responds with all
+# unique users across all servers the bot is in
+@client.command(aliases = ['online'])
+async def unique_online_members():
+    uom = channels.get_list_of_online_members(client)
+    for m in uom:
+        await client.say(m)
 
 @client.command(pass_context=True)
 async def hello(ctx):
