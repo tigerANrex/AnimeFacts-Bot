@@ -1,19 +1,10 @@
 import discord
 import asyncio
 import random
-from pyrebase import pyrebase
+import os
+#from pyrebase import pyrebase
 from urllib.parse import urlencode
-
 from discord.ext import commands
-
-config = {
-"apiKey": "AIzaSyCq_q5ny1h_hAv_JHglS7b2PQFpS7UewWQ",
-"authDomain": "animefacts-bot.firebaseapp.com",
-"databaseURL": "https://animefacts-bot.firebaseio.com",
-"storageBucket": "animefacts-bot.appspot.com"
-}
-firebase = pyrebase.initialize_app(config)
-db = firebase.database()
 
 #client = discord.Client()
 client = commands.Bot(description = "AnimeFacts Bot", command_prefix = "!")
@@ -25,6 +16,11 @@ async def on_ready():
     print(client.user.id)
     print('------------------')
     await client.change_presence(game=discord.Game(name='Prefix: !'))
+
+@client.command(aliases = ["animepics"])
+async def uploadPicture():
+    channel = client.get_channel("254365888264798208")
+    return await client.send_file(channel, "Anime Pictures/AnimePic7.jpg")
 
 @client.command(pass_context=True)
 async def hello(ctx):
@@ -74,5 +70,6 @@ async def removeFact(*, name):
 async def fact(name):
     fact = db.child("anime").child(name).get()
     return await client.say(fact.val())
+
 
 client.run('MzI3MzU0NDY0MjcxMDczMjgw.DC0IlA.ablfsh7yqBvg-k79TXYzG1EDdc0')
